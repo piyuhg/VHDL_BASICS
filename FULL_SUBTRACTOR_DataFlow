@@ -1,0 +1,11 @@
+library ieee;
+use ieee.std_logic_1164.all;
+Entity FS is
+	port(A,B, Bin : in std_logic;
+		Diff ,Bout : out std_logic);
+end FS;
+Architecture FS_DataFlow of FS is
+	begin
+	Diff <= A xor B xor Bin;
+	Bout <= ((not A) and B) or (Bin and (A xnor B));	
+end FS_DataFlow;
