@@ -1,0 +1,19 @@
+library ieee;
+use ieee.std_logic_1164.all;
+
+Entity FA_HA is
+	port(A, B, Cin : in std_logic; Sum, Cout : out std_logic);
+end FA_HA;
+Architecture FA_HA_Struct of FA_HA is
+	component HA is
+	port(A,B : in std_logic; Carry, Sum : out std_logic);
+	end component;
+	component OR_Gate is
+	port (A, B : in std_logic; C : out std_logic);
+	end Component;
+Signal s1,c1,c2 : std_logic;
+begin
+HA1 : HA port map(A,B,s1,c1);
+HA2 : HA port map(Cin,s1,Sum,c2);
+OR1 : OR_Gate port map(c1,c2, Cout);
+end FA_HA_Struct;
