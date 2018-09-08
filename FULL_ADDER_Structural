@@ -1,0 +1,23 @@
+library ieee;
+use ieee.std_logic_1164.all;
+Entity FA_S is
+	port(A, B, Cin : in std_logic; Sum, Cout : out std_logic);
+end FA_S;
+Architecture FA_Structural of FA_S is
+	Component XOR_Gate
+		port (A, B : in std_logic; C : out std_logic);
+	end Component;
+	Component AND_Gate
+		port (A, B : in std_logic; C : out std_logic);
+	end Component;
+	Component OR_Gate
+		port (A, B : in std_logic; C : out std_logic);
+	end Component;
+	signal s1,s2,s3 : std_logic ;
+	begin
+	XOR1 : XOR_Gate port map(A,B,s1);
+	XOR2 : XOR_Gate port map(s1,Cin,Sum);
+	AND1 : AND_Gate port map(A,B,s2);
+	AND2 : AND_Gate port map(s1,Cin,s3);
+	OR1  : OR_Gate port map(s2,s3,Cout);
+end FA_Structural; 
